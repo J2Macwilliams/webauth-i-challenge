@@ -29,9 +29,9 @@ router.post('/login', (req, res) => {
 	userDb
 		.getBy({username})
 		.first()
-		.then(found => {
-			if (found && bcrypt.compareSync(password && found.password)) {
-				res.status(200).json({ message: `Welcome ${found.username}!` });
+		.then(user => {
+			if (user && bcrypt.compareSync(password && user.password)) {
+				res.status(200).json({ message: `Welcome ${user.username}!` });
 			} else {
 				res.status(401).json({ message: 'Wrong Credentials' });
 			}
@@ -40,6 +40,9 @@ router.post('/login', (req, res) => {
 			res.status(500).json({ message: 'Error Getting the User', err });
 		});
 });
+
+
+
 
 router.get('/users', restricted, (req, res) => {
 	userDb

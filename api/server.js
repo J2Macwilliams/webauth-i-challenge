@@ -14,6 +14,6 @@ res.send(`<h3>Let's Get into this App!</h3>`)
 });
 
 // Call carRouter
-server.use('/api/auth', authRouter);
+server.use('/api/', authRouter);
 
 module.exports = server;

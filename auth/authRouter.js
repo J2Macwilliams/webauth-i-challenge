@@ -1,6 +1,6 @@
 const express = require('express');
 
-const dB = require('../model/authDb');
+const dB = require('../models/authDb');
 
 const router = express.Router();
 

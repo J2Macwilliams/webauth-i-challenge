@@ -24,23 +24,32 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    let {username , password} = req.body
+	let { username, password } = req.body;
 
-    userDb.getBy(username)
-    .first()
-    .then(found => {
-        if(found && bcrypt.compareSync(password && found.password)) {
-            res.status(200).json({ message: `Welcome ${found.username}!` });
-        } else {
-            res.status(401).json({message: 'Wrong Credentials'})
-        }
-    })
-    .catch(err => {
-        res.status(500).json({message: 'Error Getting the User', err})
-    })
-
+	userDb
+		.getBy(username)
+		.first()
+		.then(found => {
+			if (found && bcrypt.compareSync(password && found.password)) {
+				res.status(200).json({ message: `Welcome ${found.username}!` });
+			} else {
+				res.status(401).json({ message: 'Wrong Credentials' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Error Getting the User', err });
+		});
 });
 
-router.get('/users', restricted, (req, res) => {});
+router.get('/users', restricted, (req, res) => {
+	userDb
+		.get()
+		.then(found => {
+			res.status(200).json(found);
+		})
+		.catch(err => {
+			res.status(500).json(err);
+		});
+});
 
 module.exports = router;

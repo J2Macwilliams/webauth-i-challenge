@@ -6,17 +6,17 @@ add
 };
 
 function get() {
-return db('');
+return db('users');
 }
 
 function getById(id) {
-return db('')
+return db('users')
 .where({ id })
 .first();
 }
 
 function add(post) {
-return db('')
+return db('users')
 .insert(post)
 .then(ids => {
 return getById(ids[0]);

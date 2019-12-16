@@ -47,7 +47,7 @@ router.post("/login", (req, res) => {
 
 
 
-router.get('/users', restricted, (req, res) => {
+router.get('/restricted/users', restricted, (req, res) => {
 	userDb
 		.get()
 		.then(found => {

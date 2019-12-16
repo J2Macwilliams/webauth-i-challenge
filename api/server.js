@@ -2,7 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 
 // Require router
-const authRouter = require('./auth/authRouter');
+const authRouter = require('../auth/authRouter');
 
 const server = express();
 server.use(helmet());

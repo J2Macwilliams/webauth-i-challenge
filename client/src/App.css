@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+* {
+  font-size: 62.5%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+.navbar {
+  align-items: center;
+  background:#393e46;
+  display: flex;
+  height: 70px;
+  justify-content: space-around;
+  margin: 10px;
+  padding: 0 3%;
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 15px -8px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: 0px 2px 15px -8px rgba(0, 0, 0, 0.42);
+  box-shadow: 0px 2px 15px -8px rgba(0, 0, 0, 0.42);
+}
+
+.navLink {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #29a19c;
+}
+.navbar > a.activeNavButton {
+  background-color: #29a19c;
+  color: #a3f7bf;
+  padding: 1%;
+  text-align: center;
+  border-radius: 8px;
+} 
+
+
+
+
+

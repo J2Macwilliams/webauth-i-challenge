@@ -3,11 +3,12 @@ const bcrypt = require('bcryptjs');
 
 const userDb = require('../models/authDb');
 const restricted = require('../middleware/restricted');
+const validatePost = require('../middleware/validatePost');
 
 const router = express.Router();
 
 // Register--------------------------------------------
-router.post('/register', (req, res) => {
+router.post('/register', validatePost, (req, res) => {
 	let user = req.body;
 
 	const hash = bcrypt.hashSync(user.password, 8);
@@ -25,10 +26,10 @@ router.post('/register', (req, res) => {
 });
 
 // Login-------------------------------------------------
-router.post('/login', (req, res) => {
+router.post('/login', validatePost, (req, res) => {
 	let { username, password } = req.body;
 
-	// check that the password
+	
 
 	userDb
 		.getBy({ username })
@@ -36,7 +37,7 @@ router.post('/login', (req, res) => {
 		.then(user => {
 			if (user && bcrypt.compareSync(password, user.password)) {
 				req.session.user = user;
-				res.status(200).json({ message: `Welcome ${user.username}!` });
+				res.status(200).json({ message: `Welcome ${user.username}!` , user});
 			} else {
 				res.status(401).json({ message: 'Invalid Credentials' });
 			}
@@ -75,5 +76,7 @@ router.get('/restricted/users', restricted, (req, res) => {
 			res.status(500).json(err);
 		});
 });
+
+
 
 module.exports = router;

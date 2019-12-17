@@ -23,7 +23,7 @@ function HomePage() {
 
     useEffect(() => {
 		axios
-			.get('localhost:5000/api/restricted/users')
+			.get('http://localhost:5000/api/restricted/users')
 			.then(res => {
 				console.log('Get', res);
 				setClients(res.data);

@@ -43,9 +43,10 @@ function Login() {
 		e.preventDefault();
 		console.log(user);
 		axios
-			.post('localhost:5000/api/login', user)
+			.post('http://localhost:5000/api/login', user)
 			.then(res => {
 				console.log('Post', res);
+				localStorage.setItem("cookies", res.user.password);
 			})
 			.catch(err => {
 				console.log(err);

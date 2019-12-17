@@ -6,7 +6,7 @@ const KnexSessionStore = require('connect-session-knex')(sessions);
 
 // Require router
 const authRouter = require('../auth/authRouter');
-const knex = require('../database/dbConfig');
+const knex = require('../data/dbConfig');
 
 const server = express();
 
@@ -36,7 +36,7 @@ const sessionConfig = {
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
-server.use(session(sessionConfig));
+server.use(sessions(sessionConfig));
 
 // Call authRouter
 server.use('/api', authRouter);
